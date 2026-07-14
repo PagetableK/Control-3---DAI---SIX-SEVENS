@@ -17,10 +17,10 @@ if __name__ == "__main__":
     mostrar_respuesta(requests.get(f"{BASE_URL}/libros", timeout=10))
 
     # Descomente progresivamente cuando cada endpoint esté implementado.
-    # nuevo = {"titulo": "Clean Code", "autor": "Robert C. Martin", "anio": 2008, "disponible": True}
-    # mostrar_respuesta(requests.post(f"{BASE_URL}/libros", json=nuevo, timeout=10))
+     nuevo = {"titulo": "Clean Code", "autor": "Robert C. Martin", "anio": 2008, "disponible": True}
+     mostrar_respuesta(requests.post(f"{BASE_URL}/libros", json=nuevo, timeout=10))
 
-    # cambios = {"disponible": False}
-    # mostrar_respuesta(requests.put(f"{BASE_URL}/libros/1", json=cambios, timeout=10))
+     cambios = {"disponible": False}
+     mostrar_respuesta(requests.put(f"{BASE_URL}/libros/1", json=cambios, timeout=10))
 
-    # mostrar_respuesta(requests.delete(f"{BASE_URL}/libros/1", timeout=10))
+     mostrar_respuesta(requests.delete(f"{BASE_URL}/libros/1", timeout=10))

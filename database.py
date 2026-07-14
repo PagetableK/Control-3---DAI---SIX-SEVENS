@@ -15,21 +15,45 @@ def obtener_libros():
     return respuesta.data
 
 def obtener_libro_por_id(libro_id: int):
-    """TODO 1: consultar un libro por su id y devolverlo o None."""
-    # Pista: utilice .eq("id", libro_id) y revise respuesta.data.
-    raise NotImplementedError("Endpoint pendiente: GET /libros/<id>")
+    respuesta = (
+        supabase
+        .table("libros")
+        .select("*")
+        .eq("id", libro_id)
+        .execute()
+        )
+    if respuesta.data:
+        return respuesta.data[0]
+    return None
 
-def insertar_libro(datos: dict):
-    """TODO 2: insertar un libro y devolver el registro creado."""
-    # Pista: table(...).insert(datos).execute()
-    raise NotImplementedError("Endpoint pendiente: POST /libros")
 
-def actualizar_libro(libro_id: int, cambios: dict):
-    """TODO 3: actualizar sólo el libro indicado y devolverlo."""
-    # IMPORTANTE: update() siempre debe combinarse con un filtro.
-    raise NotImplementedError("Endpoint pendiente: PUT /libros/<id>")
+def insertar_libro(libro):
+    response = (
+        supabase
+        .table("libros")
+        .insert(libro)
+        .execute()
+        )
+    return response.data
 
-def eliminar_libro(libro_id: int):
-    """TODO 4: eliminar sólo el libro indicado y devolver el eliminado."""
-    # IMPORTANTE: delete() siempre debe combinarse con un filtro.
-    raise NotImplementedError("Endpoint pendiente: DELETE /libros/<id>")
+
+def actualizar_libro(id, libro):
+    response = (
+        supabase
+        .table("libros")
+        .update(libro)
+        .eq("id", id)
+        .execute()
+    )
+    return response.data
+
+
+def eliminar_libro(id):
+    response = (
+        supabase
+        .table("libros")
+        .delete()
+        .eq("id", id)
+        .execute()
+        )
+    return response.data
